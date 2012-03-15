@@ -115,7 +115,7 @@
     platformName = @"TARGET_OS_MAC";
 #endif
     
-    NSLog(@"Class %@ does not exist for this platform (%@) -> %@", name, platformName, classNames);
+//    NSLog(@"Class %@ does not exist for this platform (%@) -> %@", name, platformName, classNames);
     return nil;
 }
 

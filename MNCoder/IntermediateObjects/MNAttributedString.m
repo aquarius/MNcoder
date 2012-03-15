@@ -170,7 +170,7 @@ NSString *const kMNAttributedStringAttributeRangeKey = @"kMNAttributedStringAttr
 				[attributes insertObject:[self _dictionaryForAttributes:subsituteObject range:range] atIndex:([attributes count]-1)];
 				[subsituteObject release], subsituteObject = nil;
 			} else {
-				NSLog(@"Attribute not translated ->> (%@): %@", key, [attrs objectForKey:key]);
+//				NSLog(@"Attribute not translated ->> (%@): %@", key, [attrs objectForKey:key]);
 				
 				if ([MNAttributedString lossless]) {
 					[attributes insertObject:[self _dictionaryForAttributes:[NSDictionary dictionaryWithObject:[attrs objectForKey:key] forKey:key] range:range] atIndex:([attributes count]-1)];

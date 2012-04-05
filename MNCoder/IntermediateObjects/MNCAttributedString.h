@@ -1,5 +1,5 @@
 //
-//  MNASGlyphInfo.h
+//  MNAttributedString.h
 //  MNCoder
 //
 //  Created by Jeremy Foo on 1/16/12.
@@ -27,29 +27,37 @@
 
 //
 
-#import "MNCAttributedString.h"
-
 #import <Foundation/Foundation.h>
-#if TARGET_OS_IPHONE
-#import <CoreText/CoreText.h>
-#endif
+#import "MNCIntermediateObjectProtocol.h"
 
-@interface MNASGlyphInfo : NSObject <MNCAttributedStringAttributeProtocol> {
+extern NSString *const kMNAttributedStringAttributeAttributeKey;
+extern NSString *const kMNAttributedStringAttributeRangeKey;
+
+@protocol MNCAttributedStringAttributeProtocol <NSObject, NSCoding>
+@required
+-(NSDictionary *)platformRepresentation;
++(BOOL)isSubstituteForObject:(void *)object;
+-(id)initWithObject:(void *)object range:(NSRange)range forAttributedString:(NSAttributedString *)string;
+@end
+
+@interface MNCAttributedString : NSObject <MNCIntermediateObjectProtocol> {
 @private
-    NSUInteger _characterCollection;
-    NSUInteger _characterIdentifier;
-    NSString *_baseString;
+	NSMutableSet *__substituteClasses;
+    
+    NSString *_string;
+    NSArray *_attributes;
 }
 
-@property (readonly) NSUInteger characterCollection;
-@property (readonly) NSUInteger characterIdentifier;
-@property (readonly) NSString *baseString;
+@property (readonly) NSString *string;
+@property (readonly) NSArray *attributes;
 
+-(id)initWithAttributedString:(NSAttributedString *)string;
+-(NSAttributedString *)attributedString;
 
-#if TARGET_OS_IPHONE
--(id)initWithGlyph:(CTGlyphInfoRef)glyph baseString:(NSString *)baseString;
-#else
--(id)initWithGlyph:(NSGlyphInfo *)glyph baseString:(NSString *)baseString;
-#endif
+-(void)registerSubstituteClass:(Class)cls;
+-(void)unregisterSubtituteClass:(Class)cls;
+
++(BOOL)lossless;
++(void)setLossless:(BOOL)lossless;
 
 @end

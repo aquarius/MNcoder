@@ -1,8 +1,8 @@
 //
-//  MNASGlyphInfo.h
+//  MNFont.h
 //  MNCoder
 //
-//  Created by Jeremy Foo on 1/16/12.
+//  Created by Jeremy Foo on 1/7/12.
 //  Copyright (c) 2012 Jeremy Foo
 //  
 //  Permission is hereby granted, free of charge, to any person obtaining
@@ -27,29 +27,29 @@
 
 //
 
-#import "MNCAttributedString.h"
-
-#import <Foundation/Foundation.h>
 #if TARGET_OS_IPHONE
-#import <CoreText/CoreText.h>
+#import <UIKit/UIKit.h>
+#else
+#import <Foundation/Foundation.h>
 #endif
 
-@interface MNASGlyphInfo : NSObject <MNCAttributedStringAttributeProtocol> {
+#import "MNCIntermediateObjectProtocol.h"
+
+@interface MNCFont : NSObject <MNCIntermediateObjectProtocol> {
 @private
-    NSUInteger _characterCollection;
-    NSUInteger _characterIdentifier;
-    NSString *_baseString;
+    NSString *_fontName;
+    CGFloat _size;
 }
 
-@property (readonly) NSUInteger characterCollection;
-@property (readonly) NSUInteger characterIdentifier;
-@property (readonly) NSString *baseString;
-
+@property (readonly) NSString *fontName;
+@property (readonly) CGFloat size;
 
 #if TARGET_OS_IPHONE
--(id)initWithGlyph:(CTGlyphInfoRef)glyph baseString:(NSString *)baseString;
-#else
--(id)initWithGlyph:(NSGlyphInfo *)glyph baseString:(NSString *)baseString;
+-(id)initWithFont:(UIFont *)font;
+-(UIFont *)font;
+#else 
+-(id)initWithFont:(NSFont *)font;
+-(NSFont *)font;
 #endif
 
 @end

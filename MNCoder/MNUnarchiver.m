@@ -47,10 +47,6 @@
 #import "MNCColor.h"
 #import "MNCAttributedString.h"
 
-#import "MNColor.h"
-#import "MNFont.h"
-#import "MNAttributedString.h"
-
 @implementation MNUnarchiver
 @synthesize decodedRootObject=_decodedRootObject;
 
@@ -99,9 +95,6 @@
     [unarchiver registerSubstituteClass:[MNCFont class]];
     [unarchiver registerSubstituteClass:[MNCColor class]];
 	[unarchiver registerSubstituteClass:[MNCAttributedString class]];
-    [unarchiver registerSubstituteClass:[MNFont class]];
-    [unarchiver registerSubstituteClass:[MNColor class]];
-	[unarchiver registerSubstituteClass:[MNAttributedString class]];
 
     return [[[unarchiver decodedRootObject] retain] autorelease];
 }

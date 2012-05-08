@@ -53,7 +53,7 @@
 #pragma mark - Object Life Cycle
 
 -(id)init {
-	NSAssert(YES, @"Use initForReadingWithData: instead of init", nil);
+	NSAssert(YES, @"Use initForReadingWithData: instead of init");
 	return nil;
 }
 

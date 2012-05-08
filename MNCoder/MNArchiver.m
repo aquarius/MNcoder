@@ -39,7 +39,7 @@
 #pragma mark - Object Life Cycle
 
 -(id)init {
-	NSAssert(YES, @"Use initForWritingWithMutableData: instead of init", nil);
+	NSAssert(YES, @"Use initForWritingWithMutableData: instead of init");
 	return nil;
 }
 

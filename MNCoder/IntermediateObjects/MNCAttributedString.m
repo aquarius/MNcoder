@@ -173,9 +173,9 @@ NSString *const kMNAttributedStringAttributeRangeKey = @"kMNAttributedStringAttr
 			} else {
 //				NSLog(@"Attribute not translated ->> (%@): %@", key, [attrs objectForKey:key]);
 				
-				if ([MNCAttributedString lossless]) {
-					[attributes insertObject:[self _dictionaryForAttributes:[NSDictionary dictionaryWithObject:[attrs objectForKey:key] forKey:key] range:range] atIndex:([attributes count]-1)];
-				}
+                if (([MNCAttributedString lossless]) && ([[attrs objectForKey:key] conformsToProtocol:@protocol(NSCoding)])) {
+                    [attributes insertObject:[self _dictionaryForAttributes:[NSDictionary dictionaryWithObject:[attrs objectForKey:key] forKey:key] range:range] atIndex:([attributes count]-1)];
+                }
 			}
 		}
 	}];

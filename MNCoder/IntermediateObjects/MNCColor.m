@@ -28,6 +28,7 @@
 //
 
 #import "MNCColor.h"
+#import "UIColor+ColorSpaces.h"
 
 @implementation MNCColor
 @synthesize red = _red, green = _green, blue = _blue, alpha = _alpha;
@@ -58,7 +59,12 @@
 
 -(id)initWithColor:(UIColor *)color {
 	if ((self = [super init])) {
-		[color getRed:&_red green:&_green blue:&_blue alpha:&_alpha];
+        if ([color mn_canProvideRGBColor]) {
+            _red = [color mn_redComponent];
+            _green = [color mn_greenComponent];
+            _blue = [color mn_blueComponent];
+            _alpha = [color mn_alphaComponent];
+        }
 	}
 	return self;
 }

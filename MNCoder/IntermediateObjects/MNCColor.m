@@ -28,7 +28,9 @@
 //
 
 #import "MNCColor.h"
+#if MN_TARGET_IOS
 #import "UIColor+ColorSpaces.h"
+#endif
 
 @implementation MNCColor
 @synthesize red = _red, green = _green, blue = _blue, alpha = _alpha;
